@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<script src="./js/myplotlib.js"></script>
+
+<body>
+  <canvas id="myCanvas" width="400px" height="400px" style="width:100%;max-width:400px;border:1px solid black"></canvas>
+
+  <script>
+// Usage example
+const plotter = new XYPlotter("myCanvas");
+plotter.transformXY();
+const xMax = plotter.xMax;
+const yMax = plotter.yMax;
+const xMin = plotter.xMin;
+const yMin = plotter.yMin;
+
+// Create Random XY Points
+const numPoints = 500;
+const xPoints = [];
+const yPoints = [];
+for (let i = 0; i < numPoints; i++) {
+  xPoints.push(Math.random() * xMax);
+  yPoints.push(Math.random() * yMax);
+}
+
+// Line Function
+function f(x) {
+  return x * 1.2 + 50;
+}
+
+// Plot the Line
+plotter.plotLine(xMin, f(xMin), xMax, f(xMax), "black");
+
+// Compute Desired Answers
+const desired = xPoints.map((x, i) => yPoints[i] > f(x) ? 1 : 0);
+
+// Display Desired Result
+desired.forEach((value, i) => {
+  const color = value === 1 ? "black" : "blue";
+  plotter.plotPoints(xPoints[i], yPoints[i], color);
+});
+  </script>
+</body>
+</html>

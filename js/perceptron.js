@@ -1,4 +1,4 @@
-/**
+/*
 Perceptron Example
 
 Imagine a perceptron (in your brain).
